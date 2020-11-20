@@ -111,3 +111,19 @@
         }
     }
 }
+
+@media screen and (max-width: 500px) {
+    .site-navigation {
+    .menu-content-container {
+        width: 50%;
+    }
+}
+}
+
+@media screen and (max-width: 400px) {
+    .site-navigation {
+    .menu-content-container {
+        width: 200px;
+    }
+}
+}

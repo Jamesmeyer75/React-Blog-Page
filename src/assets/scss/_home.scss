@@ -1,12 +1,19 @@
 .home {
     width: 90%;
+    padding-top: 50px;
+    margin: auto;
     h1 {
         width: 100%;
         color: $text-color;
+        padding-top: 1.5em 0;
     }
 
     .featured-posts-container {
         display: flex;
+    }
+
+    .bg-white {
+        background: white;
     }
 }
 

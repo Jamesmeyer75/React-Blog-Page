@@ -1,5 +1,5 @@
 import React from 'react'
-import { MasonryPost, PostMasonry } from '../components/common'
+import { MasonryPost, PostMasonry, PostGrid } from '../components/common'
 import trending from '../assets/mocks/trending'
 import featured from '../assets/mocks/featured'
 
@@ -28,8 +28,12 @@ const featuredConfig = {
 const mergeStyles = function (posts, config) {
     posts.forEach((post, index) => {
         post.style = config[index]
+        post.author = 'James Meyer'
+        post.description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin mattis fringilla fermentum. In at odio odio. Donec eget placerat purus.'
     })
 }
+
+const recentPosts = [...trending, ...featured, ...featured]
 
 mergeStyles(trending, trendingConfig)
 mergeStyles(featured, featuredConfig)
@@ -39,16 +43,29 @@ const lastFeatured = featured.pop()
 
 export default function Home() {
     return (
-        <section className="container home">
-            <div className="row">
-                <h1>Featured Posts</h1>
-                <section className="featured-posts-container">
-                    <PostMasonry posts={featured} columns={2} tagsOnTop={true} />
-                    <MasonryPost post={lastFeatured} tagsOnTop={true} />
+        <main className="home">
+            <section className="container">
+                <div className="row">
+                    <section className="featured-posts-container">
+                        <PostMasonry posts={featured} columns={2} tagsOnTop={true} />
+                        <MasonryPost post={lastFeatured} tagsOnTop={true} />
+                    </section>
+                </div>
+            </section>
+            <section className="bg-white">
+                <section className="container">
+                    <div className="row">
+                        <h1>Recent Posts</h1>
+                        <PostGrid posts={recentPosts} />
+                    </div>
                 </section>
-                <h1>Trending Posts</h1>
-                <PostMasonry posts={trending} columns={3} />
-            </div>
-        </section>
+            </section>
+
+            <section className="container">
+                <div className="row">
+                    <PostMasonry posts={trending} columns={3} />
+                </div>
+            </section>
+        </main>
     )
 }

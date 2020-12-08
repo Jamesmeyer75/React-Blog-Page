@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react'
+import React, { useState, useMemo, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { Pagination } from 'antd'
 import { TagRow } from './'
@@ -14,9 +14,11 @@ export default function PostGrid({ posts }) {
         return posts.slice(firstIndex, lastIndex)
     }, [current, pageSize, posts])
 
+    let topOfGrid = useRef()
+
     useEffect(() => {
         window.scroll({
-            top: 570,
+            top: topOfGrid.current.offsetTop - 170,
             left: 0,
             behavior: 'smooth'
         })
@@ -24,7 +26,7 @@ export default function PostGrid({ posts }) {
 
 
     return (
-        <section className="grid-pagination-container">
+        <section ref={topOfGrid} className="grid-pagination-container">
             <section className="post-grid container">
                 {paginatedPosts.map((post, index) => (
                     <div key={index} className="post-container">
